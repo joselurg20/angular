@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LogService } from 'src/app/services/log.service';
 
 @Component({
   selector: 'app-c1',
@@ -9,7 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./c1.component.css']
 })
 export class C1Component {
-  
+
+  constructor(private logS:LogService){
+    this.logS.log("Creando componente 1");
+  };
   
 }
 

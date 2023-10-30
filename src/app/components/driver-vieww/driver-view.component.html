@@ -1,0 +1,8 @@
+
+<div *ngIf="driver" class="driverCard" (click)="comunicate()">
+    <head>{{driver.nombre}}</head>
+    <section>{{driver.edad}}</section>
+    <footer *ngIf="driver.id">{{driver.id}}</footer>
+
+</div>
+

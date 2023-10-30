@@ -1,13 +1,37 @@
 <div class="contenedor normal">
     <p> <input [(ngModel)]="nombre" (keydown.shift.space)="poneMayuscula($event)" placeholder="Nombre" /> </p>
-    <button (clic)="poneMayuscula()">⬆</button>
+    <button (click)="poneMayuscula()">⬆</button>
     <p>
         <button (click)="disminuye()">-</button>
         <span> {{edad}} años </span>
         <button (click)="aumenta()">+</button>
     </p>
-    <!--<div [style.color]="edad<18?'red':'green'">Validando edad...</div>-->   
+    <div [style.color]="edad<18?'red':'green'">Validando edad...</div>
     <div [ngStyle]="estiloLetras">Validando edad...</div>
+
+    <div *ngIf="edad>=18; else miBloqueElse">ES MAYOR DE EDAD</div>
+    <ng-template #miBloqueElse>
+        <div>ES MAYOR DE EDAD</div>
+    </ng-template>
     <button (click)="resetea()">Resetear</button>
-    <button [disabled]="edad<18 || !nombre.trim()" (clic)="inserta()">Insertar</button>
+    <button [disabled]="edad < 18 || !nombre.trim()" (click)="inserta()">Insertar</button>
 </div>
+
+<ng-container *ngIf="this.driverS.data.length==0; else elseBlock">
+    <div>No hay personas</div>
+</ng-container>
+
+
+<ng-template #elseBlock>
+
+    <table border="1">
+
+        <tr *ngFor="let persona of driverS.data; index as i"
+            (click)="goToDriver(persona.nombre)">
+            <td>Persona #{{ i + 1 }}</td>
+            <td>{{persona.nombre}}</td>
+      
+        </tr>
+
+    </table>
+</ng-template>
